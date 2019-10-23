@@ -66,14 +66,13 @@ public class DialogoFragmento extends DialogFragment {
                 builder.setSingleChoiceItems(smartphones, defChoice, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int opcion) {
                         // Evento que ocorre cando o usuario selecciona una opción
-                        Toast.makeText(getActivity().getApplicationContext(), "Seleccionaches: " + smartphones[opcion], Toast.LENGTH_SHORT).show();
                         choice = opcion;
                     }
                 });
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int boton) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Premeches 'Aceptar'", Toast.LENGTH_SHORT).show();
                         defChoice = choice;
+                        Toast.makeText(getActivity().getApplicationContext(), "Seleccionaches "+smartphones[defChoice]+" e premeches 'Aceptar'", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -106,7 +105,14 @@ public class DialogoFragmento extends DialogFragment {
                 });
                 builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int boton) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Premeches 'Aceptar'", Toast.LENGTH_LONG).show();
+                        String cadea = "Seleccionaches ";
+                        for (int i = 0;i<bAccept.length;i++) {
+                            if (bAccept[i]) {
+                                    cadea = cadea + matriz[i] + ", ";
+                            }
+                        }
+                        cadea = cadea.substring(0,cadea.length()-2);
+                        Toast.makeText(getActivity().getApplicationContext(), cadea+" e premeches 'Aceptar'", Toast.LENGTH_LONG).show();
                     }
                 });
                 builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
